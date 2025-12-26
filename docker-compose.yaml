@@ -1,0 +1,10 @@
+services:
+    frontend:
+        build: ./react-app
+        container_name: react-frontend
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./react-app:/app
+        stdin_open: true
+        tty: true
