@@ -1,10 +1,19 @@
 services:
     frontend:
         build: ./react-app
-        container_name: react-frontend
         ports:
             - "3000:3000"
         volumes:
             - ./react-app:/app
-        stdin_open: true
-        tty: true
+            - /app/node_modules
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+            - WATCHPACK_POLLING=true
+            - CHOKIDAR_INTERVAL=500
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        container_name: backend
+        ports:
+            - "4000:4000"
